@@ -14,6 +14,14 @@
     <script>
         async function some_api(myForm) {
             // ここにコードを書く
+            const endpoint = "https://catfact.ninja/fact";
+            try {
+                const response = await fetch(endpoint);
+                const data = await response.json();
+                document.getElementById("result").innerHTML = data.fact + "<br>";
+            } catch (error) {
+                document.getElementById("result").innerHTML = "API呼び出しに失敗しました。<br>";
+            }
             document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
             document.apiform.reset();
         }
