@@ -20,15 +20,16 @@
             try {
                 const response = await fetch(url);
                 const data = await response.json();
+                let resultText = "";
                 if (data.results) {
                     const result = data.results[0];
-                    const address = `${result.address1}${result.address2}${result.address3}`;
-                    document.getElementById("result").innerHTML += "<br>住所：" + address;
+                    resultText = `住所：${result.address1}${result.address2}${result.address3}`;
                 } else {
-                    document.getElementById("result").innerHTML += "<br>該当する住所が見つかりません。";
+                    resultText = "該当する住所が見つかりません。";
                 }
+                document.getElementById("result").innerHTML = zipcode + "<br>" + resultText;
             } catch (error) {
-                document.getElementById("result").innerHTML += "<br>エラーが発生しました。";
+                document.getElementById("result").innerHTML = zipcode + "<br>エラーが発生しました。";
             }
             // zipcloudのAPI呼び出して結果を表示する
             document.getElementById("result").innerHTML =  myForm.zipcode.value; // 現状ではそのまま表示しているだけ
